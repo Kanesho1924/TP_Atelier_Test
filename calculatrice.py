@@ -36,6 +36,8 @@ class Calculator():
                 self.Plus()
             elif "-" in self.text:
                 self.Sous()
+            elif "X" in self.text:
+                self.Mult()
         except:
             self.init()
 
@@ -52,6 +54,14 @@ class Calculator():
         self.phase1 = float(nb[0])
         self.phase2 = float(nb[1])
         self.final = self.phase1 - self.phase2
+        self.entry.set(str(self.final))
+        self.init()
+
+    def Mult(self): # Multiplication
+        nb = self.text.split("X")
+        self.phase1 = float(nb[0])
+        self.phase2 = float(nb[1])
+        self.final = self.phase1 * self.phase2
         self.entry.set(str(self.final))
         self.init()
 
@@ -110,6 +120,9 @@ def ButtonS (): # Actionnerle bouton S
     calculatrice.text += "-"
     calculatrice.entry.set(calculatrice.text)
 
+def ButtonM (): # Actionnerle bouton S
+    calculatrice.text += "X"
+    calculatrice.entry.set(calculatrice.text)
 
 def ButtonE (): # Actionnerle bouton E
     calculatrice.operation()
@@ -153,6 +166,9 @@ BF = Button(fen, text=".", command=ButtonF, width=3, height=2, bg="grey", fg="wh
 
 BP = Button(fen, text="+", command=ButtonP, width=4, height=2, bg="gold", fg="black", relief=GROOVE).place(x=150, y=40) # Boutton + (addition)
 BS = Button(fen, text="-", command=ButtonS, width=4, height=2, bg="gold", fg="black", relief=GROOVE).place(x=150, y=80) # Boutton - (soustacrtion)
+BM = Button(fen, text="X", command=ButtonM, width=4, height=2, bg="gold", fg="black", relief=GROOVE).place(x=150, y=120) # Boutton X (multiplication)
+
+
 BE = Button(fen, text="=", command=ButtonE, width=4, height=1, bg="blue", fg="white", relief=RIDGE).place(x=150, y=205) # Button = (égale)
 
 fen.mainloop() # Gestion de la fenêtre
